@@ -1,0 +1,199 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.profile-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profile-item span {
+  margin-top: 5px;
+}
+
+.my-page-button {
+  font-size: 16px;
+  padding: 5px 10px;
+  color: black;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.react-calendar {
+  border: none;
+  border-radius: 10px;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.react-calendar__navigation button {
+  color: pink;
+  min-width: 44px;
+  background: none;
+  font-size: 24px; /* Increased arrow size */
+  margin: 5px;
+  cursor: pointer;
+}
+
+.react-calendar__navigation__label {
+  font-size: 20px; /* Increased label size */
+  font-weight: bold;
+  color: pink;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+  font-weight: bold;
+  color: pink;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr[title] {
+  text-decoration: none;
+}
+
+.react-calendar__tile {
+  background: none;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.react-calendar__tile--now {
+  background: pink;
+  border-radius: 50%;
+  color: white;
+  position: relative;
+}
+
+.react-calendar__tile--now::before {
+  content: attr(data-date);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+}
+
+.react-calendar__tile--active {
+  background: pink;
+  color: white;
+  border-radius: 50%;
+}
+
+.react-calendar__tile--now:hover,
+.react-calendar__tile--active:hover {
+  background: rgb(223, 125, 141);
+  color: white;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: #eee;
+  border-radius: 50%;
+}
+
+.sunday {
+  color: red; /* Sunday text color */
+}
+
+.saturday {
+  color: blue; /* Saturday text color */
+}
+
+.selected-date {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  display: none; /* Hide the selected date text */
+}
+
+.check-page-link {
+  text-align: center;
+  font-size: 16px;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.tile-content {
+  position: relative;
+  top: 80%; /* Align vertically to the center */
+  left: 50%; /* Align horizontally to the center */
+  transform: translate(-50%, -50%);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 추가한 css */
+.schedule-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.red-dot {
+  background-color: red;
+}
+
+.tile-content {
+  position: relative;
+  top: 80%; /* Align vertically to the center */
+  left: 50%; /* Align horizontally to the center */
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
