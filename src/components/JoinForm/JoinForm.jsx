@@ -18,10 +18,10 @@ const join = async (name, email, password) => {
       console.log(data);
       return data;
     } else {
-      alert('마이페이지 접속 오류');
+      alert('회원가입 오류가 발생했습니다.');
       return null;
     }
-  };
+};
 
 const JoinForm = () => {
     const [username, setUsername] = useState('');
@@ -44,11 +44,15 @@ const JoinForm = () => {
         return true;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         if (validateForm()) {
-            alert('회원 가입이 완료되었습니다.');
-            navigate('/login');
+            const result = await join(username, email, password);
+            if (result) {
+                alert('회원 가입이 완료되었습니다.');
+                navigate('/login');
+            }
         }
     };
 

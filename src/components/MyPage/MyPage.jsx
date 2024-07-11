@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './MyPage.css';
 import { PetContext } from '../contexts/PetContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaCalendarAlt } from 'react-icons/fa';
 
 const getInformation = async () => {
   const response = await fetch(`http://localhost:8080/users/mypage`, {
@@ -27,9 +28,10 @@ function MyPage() {
   const [isEditingName, setIsEditingName] = useState(false);
   const [email, setEmail] = useState('');
   const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [ pets, setPets ] = useState([]);
+  const [pets, setPets] = useState([]);
   const [newPetName, setNewPetName] = useState('');
   const [isAddingPet, setIsAddingPet] = useState(false);
+  const [firstPetId, setFirstPetId] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +41,9 @@ function MyPage() {
         setUserName(data.user_name);
         setEmail(data.email);
         setPets(data.pets);
+        if (data.pets.length > 0) {
+          setFirstPetId(Math.min(...data.pets.map(pet => pet.pet_id)));
+        }
       }
     };
 
@@ -74,7 +79,7 @@ function MyPage() {
   };
 
   const handleSavePet = async () => {
-     const response = await fetch(`http://localhost:8080/pets`, {
+    const response = await fetch(`http://localhost:8080/pets`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -86,11 +91,11 @@ function MyPage() {
     if (response.ok) {
       const data = await response.json();
       const newPet = {
-        pet_id : data.insertId,
-        pet_name : newPetName,
-      }
+        pet_id: data.insertId,
+        pet_name: newPetName,
+      };
       console.log(newPet);
-      console.log(pets);
+      setFirstPetId(prevFirstPetId => (prevFirstPetId === 0 || newPet.pet_id < prevFirstPetId) ? newPet.pet_id : prevFirstPetId);
       setPets([...pets, newPet]);
       setIsAddingPet(false);
       setNewPetName('');
@@ -110,25 +115,30 @@ function MyPage() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ pet_id : id }),
+      body: JSON.stringify({ pet_id: id }),
       credentials: 'include'
     });
 
     if (response.ok) {
       setPets(pets.filter(pet => pet.pet_id !== id));
+      setFirstPetId(prevFirstPetId => (prevFirstPetId === id ? (pets.filter(pet => pet.pet_id !== id).reduce((minId, pet) => pet.pet_id < minId ? pet.pet_id : minId, Infinity)) : prevFirstPetId));
     } else {
       alert('반려동물 삭제 오류');
     }
   };
 
-  const handleBackClick = () => {
-    navigate(-1); // 이전 페이지로 이동
+  const handleCalendarClick = () => {
+    if (firstPetId === 0) {
+      alert('첫번째 반려동물을 추가해주세요.');
+    } else {
+      navigate(`/calendar/${firstPetId}`);
+    }
   };
 
   return (
     <div className="my-page">
       <header className="header">
-        <span className="back-arrow" onClick={handleBackClick}>←</span>
+        <span className="back-arrow" onClick={handleCalendarClick}><FaCalendarAlt /> </span>
         <span className="header-title">마이페이지</span>
       </header>
       <div className="content">

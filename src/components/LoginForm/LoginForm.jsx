@@ -19,11 +19,17 @@ function LoginForm() {
       body: JSON.stringify({ email, password }), // JSON 형식으로 이메일과 비밀번호를 요청 본문에 포함
       credentials: 'include' // 쿠키를 포함한 요청을 허용
     });
+    console.log('로그인 : ', email, password);
 
     if (response.ok) {
       const data = await response.json();
-      // 로그인 성공 시, 원하는 페이지로 리디렉션
-      navigate(`/calendar/${data.id}`);
+      console.log(data);
+      if(data.mypage){
+        navigate(`/mypage`);
+      } else {
+        // 로그인 성공 시, 원하는 페이지로 리디렉션
+        navigate(`/calendar/${data.id}`);
+      }
     } else {
       // 로그인 실패 시, 에러 처리
       alert('이메일과 비밀번호를 확인해주세요');
