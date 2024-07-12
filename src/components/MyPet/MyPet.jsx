@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './MyPet.css';
 
 const getInformation = async (pet_id) => {
-  const response = await fetch(`http://localhost:8080/pets/${pet_id}`, {
+  const response = await fetch(`http://13.124.35.7:8080/pets/${pet_id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function MyPet() {
   };
 
   const handleAddTodo = async (pet_id, title, color) => {
-    const response = await fetch(`http://localhost:8080/pets/todo`, {
+    const response = await fetch(`http://13.124.35.7:8080/pets/todo`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function MyPet() {
   };
 
   const handleRemoveTodo = async (pet_id, todo_id) => {
-    const response = await fetch(`http://localhost:8080/pets/todo`, {
+    const response = await fetch(`http://13.124.35.7:8080/pets/todo`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

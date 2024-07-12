@@ -3,7 +3,7 @@ import './CheckPage.css';
 import { useParams, Link } from 'react-router-dom';
 
 const getInformation = async (pet_id, date) => {
-  const response = await fetch(`http://localhost:8080/calendar/${pet_id}/daily/${date}`, {
+  const response = await fetch(`http://13.124.35.7:8080/calendar/${pet_id}/daily/${date}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const CheckPage = () => {
 
   const handleCheckboxChange = async (todo_id, pet_id, date, completed) => {
     const method = completed ? 'DELETE' : 'POST';
-    const response = await fetch(`http://localhost:8080/calendar/${pet_id}/todos`, {
+    const response = await fetch(`http://13.124.35.7:8080/calendar/${pet_id}/todos`, {
       method: method,
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const CheckPage = () => {
 
   const handleAddSchedule = async (pet_id, date) => {
     if (newScheduleTitle.trim()) {
-      const response = await fetch(`http://localhost:8080/calendar/${pet_id}/schedules`, {
+      const response = await fetch(`http://13.124.35.7:8080/calendar/${pet_id}/schedules`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const CheckPage = () => {
   };
 
   const handleRemoveSchedule = async (pet_id, schedule_id) => {
-    const response = await fetch(`http://localhost:8080/calendar/${petId}/schedules`, {
+    const response = await fetch(`http://13.124.35.7:8080/calendar/${petId}/schedules`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

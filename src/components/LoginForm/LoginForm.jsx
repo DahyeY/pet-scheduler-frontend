@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './LoginForm.css';
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault(); // 폼의 기본 제출 동작을 막음
 
-    const response = await fetch('http://localhost:8080/users/login', {
+    const response = await fetch('http://13.124.35.7:8080/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,6 +28,8 @@ function LoginForm() {
       if(data.mypage){
         navigate(`/mypage`);
       } else {
+        const cookies = new Cookies();
+        cookies.set('token', data.token, { path: '/' });
         // 로그인 성공 시, 원하는 페이지로 리디렉션
         navigate(`/calendar/${data.id}`);
       }

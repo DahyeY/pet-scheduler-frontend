@@ -4,7 +4,7 @@ import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import './JoinForm.css';
 
 const join = async (name, email, password) => {
-    const response = await fetch(`http://localhost:8080/users/join`, {
+    const response = await fetch(`http://13.124.35.7:8080/users/join`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
