@@ -3,18 +3,22 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './MainPage.css';
+import cookie from 'react-cookies';
 
 // Fetch information data from the backend
 const getInformation = async (pet_id, year, month) => {
-  const response = await fetch(`http://localhost:8080/calendar/${pet_id}`, {
+  console.log("getinfo: ",cookie.load('token'));
+
+  const response = await fetch(`http://13.124.35.7:8080/calendar/${pet_id}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'token': `${cookie.load('token')}`
     },
     body: JSON.stringify({ year, month }),
     credentials: 'include'
   });
-
+  
   if (response.ok) {
     const data = await response.json();
     return data;

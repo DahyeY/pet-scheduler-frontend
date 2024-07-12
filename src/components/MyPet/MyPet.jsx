@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './MyPet.css';
+import cookie from 'react-cookies';
+
 
 const getInformation = async (pet_id) => {
   const response = await fetch(`http://13.124.35.7:8080/pets/${pet_id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
+      'token': `${cookie.load('token')}`
     },
     credentials: 'include'
   });
@@ -63,6 +66,8 @@ function MyPet() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'token': `${cookie.load('token')}`
+
       },
       body: JSON.stringify({ pet_id, title, color }),
       credentials: 'include'
@@ -88,6 +93,8 @@ function MyPet() {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'token': `${cookie.load('token')}`
+
       },
       body: JSON.stringify({ pet_id, todo_id }),
       credentials: 'include'

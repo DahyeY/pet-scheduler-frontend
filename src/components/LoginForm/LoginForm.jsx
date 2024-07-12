@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './LoginForm.css';
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'universal-cookie';
+import  cookie from 'react-cookies'; 
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -16,6 +16,7 @@ function LoginForm() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'token': `${cookie.load('token')}`
       },
       body: JSON.stringify({ email, password }), // JSON 형식으로 이메일과 비밀번호를 요청 본문에 포함
       credentials: 'include' // 쿠키를 포함한 요청을 허용
@@ -25,11 +26,15 @@ function LoginForm() {
     if (response.ok) {
       const data = await response.json();
       console.log(data);
+      cookie.save('token', data.token, {
+        path: '/',
+        // sameSite: 'None',
+        // secure: false
+      });
+
       if(data.mypage){
         navigate(`/mypage`);
       } else {
-        const cookies = new Cookies();
-        cookies.set('token', data.token, { path: '/' });
         // 로그인 성공 시, 원하는 페이지로 리디렉션
         navigate(`/calendar/${data.id}`);
       }

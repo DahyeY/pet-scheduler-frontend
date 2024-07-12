@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './MyPage.css';
-import { PetContext } from '../contexts/PetContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaCalendarAlt } from 'react-icons/fa';
+import cookie from 'react-cookies';
+
 
 const getInformation = async () => {
-  const response = await fetch(`http://localhost:8080/users/mypage`, {
+  const response = await fetch(`http://13.124.35.7:8080/users/mypage`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
+      'token': `${cookie.load('token')}`
     },
     credentials: 'include'
   });
@@ -79,10 +81,11 @@ function MyPage() {
   };
 
   const handleSavePet = async () => {
-    const response = await fetch(`http://localhost:8080/pets`, {
+    const response = await fetch(`http://13.124.35.7:8080/pets`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'token': `${cookie.load('token')}`
       },
       body: JSON.stringify({ name: newPetName }),
       credentials: 'include'
@@ -114,6 +117,7 @@ function MyPage() {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'token': `${cookie.load('token')}`
       },
       body: JSON.stringify({ pet_id: id }),
       credentials: 'include'

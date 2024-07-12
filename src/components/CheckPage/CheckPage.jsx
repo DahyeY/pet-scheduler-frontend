@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './CheckPage.css';
 import { useParams, Link } from 'react-router-dom';
+import cookie from 'react-cookies';
+
 
 const getInformation = async (pet_id, date) => {
   const response = await fetch(`http://13.124.35.7:8080/calendar/${pet_id}/daily/${date}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'token': `${cookie.load('token')}`
+
     },
     credentials: 'include'
   });
@@ -46,6 +50,8 @@ const CheckPage = () => {
       method: method,
       headers: {
         'Content-Type': 'application/json',
+        'token': `${cookie.load('token')}`
+
       },
       body: JSON.stringify({ daily_todo_id: todo_id, date: date }),
       credentials: 'include'
@@ -68,6 +74,7 @@ const CheckPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'token': `${cookie.load('token')}`
         },
         body: JSON.stringify({ title: newScheduleTitle, date: date }),
         credentials: 'include'
@@ -94,6 +101,7 @@ const CheckPage = () => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'token': `${cookie.load('token')}`
       },
       body: JSON.stringify({ schedule_id }),
       credentials: 'include'
