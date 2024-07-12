@@ -113,7 +113,7 @@ function MyPage() {
 
   const handleRemovePet = async (id) => {
     console.log('삭제 id :', id);
-    const response = await fetch(`http://localhost:8080/pets`, {
+    const response = await fetch(`http://13.124.35.7:8080/pets`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
