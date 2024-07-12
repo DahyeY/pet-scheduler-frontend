@@ -125,7 +125,7 @@ function MyPage() {
 
     if (response.ok) {
       setPets(pets.filter(pet => pet.pet_id !== id));
-      setFirstPetId(prevFirstPetId => (prevFirstPetId === id ? (pets.filter(pet => pet.pet_id !== id).reduce((minId, pet) => pet.pet_id < minId ? pet.pet_id : minId, Infinity)) : prevFirstPetId));
+      setFirstPetId(prevFirstPetId => (prevFirstPetId === id ? (pets.filter(pet => pet.pet_id !== id).reduce((minId, pet) => pet.pet_id < minId ? pet.pet_id : minId, 0)) : prevFirstPetId));
     } else {
       alert('반려동물 삭제 오류');
     }
@@ -186,8 +186,8 @@ function MyPage() {
           <span className="label">반려동물</span>
         </div>
         <div className="pet-container">
-          {pets.map((pet) => (
-            <div key={pet.pet_id} className="pet-item">
+          {pets.map((pet, index) => (
+            <div key={index} className="pet-item">
               <span className="value">{pet.pet_name}</span>
               <Link to={`/pets/${pet.pet_id}`} className="setting-link">설정</Link>
               <button className="delete-button" onClick={() => handleRemovePet(pet.pet_id)}>삭제</button>
