@@ -76,6 +76,11 @@ const MainPage = () => {
     fetchData(pet_id, year, month);
   };
 
+  const handleLogOut = () => {
+    cookie.remove('token', { path: '/' });
+    navigate('/');
+  }
+
   if (!data) {
     return <div>Loading...</div>;
   }
@@ -85,6 +90,9 @@ const MainPage = () => {
       <header className="header">
         <div>
           <div className='right-content'>
+          <div className='right-content'>
+            <button onClick={handleLogOut}>로그아웃</button>
+          </div>
             <Link to="/mypage"><button className="my-page-button right-content">마이페이지</button></Link>
           </div>
           <div className="profile">
