@@ -20,6 +20,7 @@ const getInformation = async (pet_id) => {
     return data;
   } else {
     alert('반려동물 설정 페이지 접속 오류');
+    window.location.href = '/';
     return null;
   }
 };

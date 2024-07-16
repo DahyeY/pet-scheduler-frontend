@@ -24,6 +24,7 @@ const getInformation = async (pet_id, year, month) => {
     return data;
   } else {
     alert('메인페이지 접속 오류');
+    window.location.href = '/';
     return null;
   }
 };
@@ -57,6 +58,7 @@ const MainPage = () => {
     fetchData(pet_id, year, month);
   }, [pet_id, date]);
 
+
   const handleDateChange = (newDate) => {
     let offset = newDate.getTimezoneOffset() * 60000; //ms단위라 60000곱해줌
     let dateOffset = new Date(newDate.getTime() - offset);
@@ -81,9 +83,9 @@ const MainPage = () => {
     navigate('/');
   }
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
+   if (!data) {
+      return <div>Loading...</div>;
+   }
 
   return (
     <div className="app">
