@@ -182,18 +182,17 @@ function MyPage() {
             </>
           )}
         </div>
-        <div className="item">
-          <span className="label">반려동물</span>
-        </div>
+
         <div className="pet-container">
-          {pets.map((pet, index) => (
-            <div key={index} className="pet-item">
-              <span className="value">{pet.pet_name}</span>
-              <Link to={`/pets/${pet.pet_id}`} className="setting-link">설정</Link>
-              <button className="delete-button" onClick={() => handleRemovePet(pet.pet_id)}>삭제</button>
-            </div>
-          ))}
-        </div>
+          <span className="label">나의 반려동물</span>
+            <div>
+            {pets.map((pet, index) => (
+              <div key={index} className="pet-item">
+                <span className="value">{pet.pet_name}</span>
+                <Link to={`/pets/${pet.pet_id}`} className="setting-link">설정</Link>
+                <button className="delete-button" onClick={() => handleRemovePet(pet.pet_id)}>삭제</button>
+              </div>
+            ))}
         {isAddingPet ? (
           <div className="item">
             <input
@@ -201,13 +200,15 @@ function MyPage() {
               value={newPetName}
               onChange={handlePetNameChange}
               placeholder="반려동물 이름"
-            />
+              />
             <button className="save-button" onClick={handleSavePet}>저장</button>
           </div>
         ) : (
           <button className="add-button" onClick={handleAddPet}>+ 추가하기</button>
         )}
       </div>
+    </div>
+        </div>
     </div>
   );
 }

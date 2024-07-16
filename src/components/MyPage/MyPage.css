@@ -39,8 +39,10 @@ body {
 }
 
 .label {
-  width: 100px;
+  display: flex;
+  width: 150px;
   font-size: 18px;
+  font-weight: 1000;
   color: #333;
 }
 
@@ -85,7 +87,7 @@ body {
 }
 
 .pet-item {
-  display: flex;
+  display: block;
   align-items: center;
   margin-right: 20px;
   margin-bottom: 10px;
@@ -104,8 +106,7 @@ body {
 
 .add-button {
   font-size: 18px;
-  color: #fff;
-  background-color: #007bff;
+  color: #7b7b7b;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
@@ -115,5 +116,6 @@ body {
 }
 
 .add-button:hover {
-  background-color: #0056b3;
+  background-color: #c4c4c4;
+  color: black;
 }

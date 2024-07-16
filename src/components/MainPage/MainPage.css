@@ -27,6 +27,12 @@ body {
   flex-direction: column;
   align-items: center;
   margin-right: 10px;
+  color: #727272;
+  font-weight: 600;
+}
+.profile-item.selected {
+  color: black;
+  font-weight: 1000;
 }
 
 .profile-item img {
@@ -69,7 +75,7 @@ body {
 }
 
 .react-calendar__navigation button {
-  color: pink;
+  color: black;
   min-width: 44px;
   background: none;
   font-size: 24px; /* Increased arrow size */
@@ -80,13 +86,13 @@ body {
 .react-calendar__navigation__label {
   font-size: 20px; /* Increased label size */
   font-weight: bold;
-  color: pink;
+  color: black;
 }
 
 .react-calendar__month-view__weekdays__weekday {
   text-align: center;
   font-weight: bold;
-  color: pink;
+  color: rgb(70, 70, 70);
 }
 
 .react-calendar__month-view__weekdays__weekday abbr[title] {
@@ -96,16 +102,15 @@ body {
 .react-calendar__tile {
   background: none;
   text-align: center;
+  align-items: center;
   font-size: 14px;
   border: none;
   cursor: pointer;
   position: relative;
+  height: 10vh;
 }
 
 .react-calendar__tile--now {
-  background: pink;
-  border-radius: 50%;
-  color: white;
   position: relative;
 }
 
@@ -118,31 +123,36 @@ body {
   color: white;
   font-size: 14px;
 }
+.react-calendar__month-view__days__day {
+  position: relative;
+  align-items: flex-start;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  color: #727272;
+}
 
 .react-calendar__tile--active {
-  background: pink;
-  color: white;
-  border-radius: 50%;
+  color: black;
+  text-decoration: underline;
 }
 
 .react-calendar__tile--now:hover,
 .react-calendar__tile--active:hover {
-  background: rgb(223, 125, 141);
-  color: white;
+  background: rgb(206, 124, 138);
 }
 
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
   background: #eee;
-  border-radius: 50%;
 }
 
 .sunday {
-  color: red; /* Sunday text color */
+  color: rgb(238, 87, 60); /* Sunday text color */
 }
 
 .saturday {
-  color: blue; /* Saturday text color */
+  color: rgb(59, 59, 176); /* Saturday text color */
 }
 
 .selected-date {
@@ -158,13 +168,6 @@ body {
   color: blue;
   cursor: pointer;
   text-decoration: underline;
-}
-
-.tile-content {
-  position: relative;
-  top: 80%; /* Align vertically to the center */
-  left: 50%; /* Align horizontally to the center */
-  transform: translate(-50%, -50%);
 }
 
 .dot {
@@ -183,17 +186,33 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  margin-right: 5px;
+  margin: 1px;
+}
+
+.schedule-dot.yellow {
+  background-color: #fbe205;
+}
+.schedule-dot.pink {
+  background-color: #ff6ba0;
+}
+.schedule-dot.purple {
+  background-color: #ea6bff;
+}
+.schedule-dot.green {
+  background-color: #88e48c;
+}
+.schedule-dot.blue {
+  background-color: #80c5f7;
 }
 
 .red-dot {
+  border-radius: 50%;
   background-color: red;
 }
 
 .tile-content {
-  position: relative;
-  top: 80%; /* Align vertically to the center */
-  left: 50%; /* Align horizontally to the center */
-  height: 100%;
-  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 25px;
+
+  align-items: center;
 }

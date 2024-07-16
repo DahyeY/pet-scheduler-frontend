@@ -75,11 +75,21 @@ body {
   margin-right: 10px;
 }
 
-.goal-color.yellow { background-color: yellow; }
-.goal-color.pink { background-color: pink; }
-.goal-color.purple { background-color: purple; }
-.goal-color.green { background-color: green; }
-.goal-color.blue { background-color: blue; }
+.goal-color.yellow {
+  background-color: #fbe205;
+}
+.goal-color.pink {
+  background-color: #ff6ba0;
+}
+.goal-color.purple {
+  background-color: #ea6bff;
+}
+.goal-color.green {
+  background-color: #88e48c;
+}
+.goal-color.blue {
+  background-color: #80c5f7;
+}
 
 .goal-text {
   flex: 1;
@@ -109,6 +119,20 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 10px;
+
+  /* 01 Input Field */
+  box-sizing: border-box;
+
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  /* Button Shadow */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+
+  /* Inside auto layout */
+  flex: none;
+  align-self: stretch;
+  flex-grow: 0;
 }
 
 .color-options {
@@ -126,26 +150,30 @@ body {
   border: 2px solid transparent;
 }
 
-.color.yellow { background-color: yellow; }
-.color.pink { background-color: pink; }
-.color.purple { background-color: purple; }
-.color.green { background-color: green; }
-.color.blue { background-color: blue; }
+.color.yellow {
+  background-color: #fbe205;
+}
+.color.pink {
+  background-color: #ff6ba0;
+}
+.color.purple {
+  background-color: #ea6bff;
+}
+.color.green {
+  background-color: #88e48c;
+}
+.color.blue {
+  background-color: #80c5f7;
+}
 
 .color.selected {
   border: 2px solid black;
 }
 
-.add-button {
-  font-size: 14px;
-  padding: 5px 10px;
-  color: blue;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.edit-button, .save-button, .setting-button, .delete-button {
+.edit-button,
+.save-button,
+.setting-button,
+.delete-button {
   font-size: 14px;
   padding: 5px 10px;
   margin-left: 10px;
@@ -154,7 +182,8 @@ body {
   background: none;
 }
 
-.edit-button, .setting-button {
+.edit-button,
+.setting-button {
   color: blue;
 }
 
@@ -183,4 +212,25 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.add-button {
+  flex: none;
+  flex-grow: 0;
+  /* 추가하기 */
+
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  /* identical to box height, or 20px */
+
+  color: #828282;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }

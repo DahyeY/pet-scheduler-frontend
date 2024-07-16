@@ -58,8 +58,10 @@ const MainPage = () => {
   }, [pet_id, date]);
 
   const handleDateChange = (newDate) => {
-    setDate(newDate);
-    navigate(`/calendar/${selectedPetId}/daily/${newDate.toISOString().split('T')[0]}`);
+    let offset = newDate.getTimezoneOffset() * 60000; //ms단위라 60000곱해줌
+    let dateOffset = new Date(newDate.getTime() - offset);
+    console.log(dateOffset.toISOString().split('T')[0]);
+    navigate(`/calendar/${selectedPetId}/daily/${dateOffset.toISOString().split('T')[0]}`);
   };
 
   const handlePetClick = (id) => {
@@ -83,7 +85,7 @@ const MainPage = () => {
       <header className="header">
         <div className="profile">
           {pets.map((pet) => (
-            <div key={pet.id} className="profile-item" onClick={() => handlePetClick(pet.id)}>
+            <div key={pet.id} className={`profile-item ${selectedPetId === pet.id ? 'selected' : 'none'}`} onClick={() => handlePetClick(pet.id)}>
               {/* <img src={pet.image} alt={pet.name} className="profile-image" /> */}
               <div className="profile-name">{pet.name}</div>
             </div>
@@ -105,18 +107,22 @@ const MainPage = () => {
             ['일', '월', '화', '수', '목', '금', '토'][date.getDay()]
           }
           tileContent={({ date, view }) => {
+            
             if (view === 'month' && selectedPetId) {
-              const dateString = date.toISOString().split('T')[0];
+              let offset = date.getTimezoneOffset() * 60000; //ms단위라 60000곱해줌
+              let dateOffset = new Date(date.getTime() - offset);
+              const dateString = dateOffset.toISOString().split('T')[0];
+
               const scheduleDates = schedule.filter(sch => sch.schedule_date === dateString);
               const todoLogDates = todoLog.filter(todo => todo.completed_at === dateString);
 
               return (
                 <div className="tile-content">
                   {scheduleDates.map((sch, index) => (
-                    <span key={index} className="schedule-dot red-dot"></span>
+                    <div key={index} className="dots schedule-dot red-dot"></div>
                   ))}
                   {todoLogDates.map((todo, index) => (
-                    <span key={index} className="schedule-dot" style={{ backgroundColor: todo.color }}></span>
+                    <div key={index} className={ `schedule-dot ${ todo.color }`}></div>
                   ))}
                 </div>
               );

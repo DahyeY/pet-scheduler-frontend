@@ -13,7 +13,7 @@ function App() {
     <PetProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<LoginForm />}></Route>
+          <Route path="/" element={<LoginForm />}></Route>
           <Route path="/join" element={<JoinForm />}></Route>
           <Route path="/calendar" element={<MainPage />}></Route>
           <Route path="/calendar/:id" element={<MainPage />}></Route>

@@ -46,7 +46,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>펫 스케줄러</h1>
+      <h1 className='app-title'>펫 스케줄러</h1>
       <div className="input-box">
         <FaUser className='icon'/>
         <input
@@ -69,7 +69,7 @@ function LoginForm() {
         />
       </div>
 
-      <button type="submit">로그인</button>
+      <button className="login-button" type="submit">로그인</button>
       
       <div className="register-link">
         <p>Don't have an account? <a href="/join" className="link-button">가입하기</a></p>
