@@ -83,15 +83,19 @@ const MainPage = () => {
   return (
     <div className="app">
       <header className="header">
-        <div className="profile">
-          {pets.map((pet) => (
-            <div key={pet.id} className={`profile-item ${selectedPetId === pet.id ? 'selected' : 'none'}`} onClick={() => handlePetClick(pet.id)}>
-              {/* <img src={pet.image} alt={pet.name} className="profile-image" /> */}
-              <div className="profile-name">{pet.name}</div>
-            </div>
+        <div>
+          <div className='right-content'>
+            <Link to="/mypage"><button className="my-page-button right-content">마이페이지</button></Link>
+          </div>
+          <div className="profile">
+            {pets.map((pet) => (
+              <div key={pet.id} className={`profile-item ${selectedPetId === pet.id ? 'selected' : 'none'}`} onClick={() => handlePetClick(pet.id)}>
+                {/* <img src={pet.image} alt={pet.name} className="profile-image" /> */}
+                <div className="profile-name">{pet.name}</div>
+              </div>
           ))}
+          </div>
         </div>
-        <Link to="/mypage"><button className="my-page-button">마이페이지</button></Link>
       </header>
       <div className="calendar-container">
         <Calendar

@@ -59,10 +59,11 @@ body {
 }
 
 .goal-color {
-  width: 20px;
-  height: 20px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin: 0 10px;
 }
 
 /* 색 5개로 추가 */
@@ -75,6 +76,12 @@ body {
 }
 .goal-color.blue {
   background-color: #80c5f7;
+}
+.goal-color.purple {
+  background-color: #ea6bff;
+}
+.goal-color.green {
+  background-color: #88e48c;
 }
 
 .goal-text {
